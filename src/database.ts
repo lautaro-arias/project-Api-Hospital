@@ -6,11 +6,7 @@ mongoose.connect(config.DB.URI)
 const connection = mongoose.connection;
 
 connection.once('open',() => {
-    try {
-        console.log('Mongodb connection ko')
-    } catch (error) {
-        console.log('Mongodb connection error')
-    }
+    console.log('Mongodb connection ko')
     
 });
 

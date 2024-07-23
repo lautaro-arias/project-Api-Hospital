@@ -3,7 +3,7 @@ import { ArchiveModel } from '../models/archiveModel';
 import moment from 'moment';
 import { Update } from '../interface/allInterface';
 
-export async function List(req:Request,res:Response){
+export async function listArchive(req:Request,res:Response){
     try {
         const data = await ArchiveModel.find();
         res.status(200).json(data);
@@ -15,7 +15,7 @@ export async function List(req:Request,res:Response){
 };
 
 
-export async function  Add(req: Request, res: Response)  {
+export async function  addArchive(req: Request, res: Response)  {
     try {
         const { service, name,   numberOrder,    brand,  model,
                 numberSerie,    numberInventory,    start,  end,
@@ -51,10 +51,10 @@ export async function  Add(req: Request, res: Response)  {
     }
 };
 
-export async function Update(req: Request, res: Response) {
+export async function updateArchive(req: Request, res: Response) {
     try {
         const { observations, ...otherUpdates } = req.body;
-        const data = await ArchiveModel.findById(req.params.id);
+        const data:any = await ArchiveModel.findById(req.params.id);
 
         if (!data) {
             return res.status(404).json({ msg: 'No existe' });
@@ -74,7 +74,7 @@ export async function Update(req: Request, res: Response) {
             }
         });
 
-        await data.save();
+         data.save();
 
         res.status(200).json({ msg: 'Actualizado con éxito' });
     } catch (error) {
@@ -83,7 +83,7 @@ export async function Update(req: Request, res: Response) {
     }
 }
 
-export const Delete = async (req:Request,res:Response) => {
+export const deleteArchive = async (req:Request,res:Response) => {
         try {
             const data = await ArchiveModel.findByIdAndDelete(req.params.id);
 

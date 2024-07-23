@@ -1,12 +1,12 @@
-import {Router} from "express";
-import  {List, Add , Delete, Update }  from "../controllers/controller";
+import { Router } from "express";
+import  { listArchive, addArchive , deleteArchive, updateArchive }  from "../controllers/controller";
 
 const router = Router()
 
-router.get('/list',List)
-router.post('/add', Add)
-router.delete('/delete/:id',Delete)
-router.put('/update/:id',Update)
+router.get('/list',listArchive)
+router.post('/add', addArchive)
+router.delete('/delete/:id',deleteArchive)
+router.put('/update/:id',updateArchive)
 
 
 export default router;
