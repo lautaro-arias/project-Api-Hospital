@@ -1,0 +1,5 @@
+#/bin/sh
+docker stop back-st
+docker rm back-st-test
+docker image rm back-st
+docker build -t back-st .
