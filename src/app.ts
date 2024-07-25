@@ -2,10 +2,8 @@ import express from "express";
 import morgan from "morgan";
 import cors from "cors";
 import  router  from "./routes/routes";
-import { PORT } from "./config/config";
-import config from './config/config';
 
-//const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 4000;
 
 //inicial
 const app = express();
@@ -15,7 +13,7 @@ const DB_URI = process.env.MONGODB_URI || "mongodb://localhost/mydb";
 const corsOptions = {
     origin: "*",
     methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "API-KEY"],
+    allowedHeaders: ["Content-Type", "Authorization"],
 };
 //
 
@@ -26,22 +24,13 @@ app.use(
     }),
     
 );
-app.use((req, res, next) => {
-	const apikey = req.header('API-KEY');
-	
-	if (!apikey || apikey !== config.API_KEY) {
-		return res.status(401).send({ message: 'Invalid API-KEY' });
-	}
-	
-	next();
-	
-});
-app.use(morgan("dev")); //me muestra las peticiones ej Get/ 304
+
+
+app.use(morgan("dev")); 
 app.use(cors(corsOptions));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(router);
-
 
 
 //routes
@@ -49,7 +38,5 @@ app.get("/", (req, res) => {
     res.send(`Estamos en el puerto ${PORT}`);
     
 });
-
-
 
 export default app;
