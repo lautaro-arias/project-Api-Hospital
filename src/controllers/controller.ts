@@ -23,6 +23,8 @@ export async function addArchive(req: Request, res: Response) {
         numberInventory,
         start,
         end,
+        task,
+        fechaTask,
         observations,
         materials,
         departureDestination,
@@ -47,6 +49,8 @@ export async function addArchive(req: Request, res: Response) {
             },
         ]
         : [],
+        task,
+        fechaTask,
         materials,
         departureDestination,
         inCharge,

@@ -6,6 +6,11 @@ const observationSchema = new mongoose.Schema({
     timestamp: { type: Date, default: () => moment().tz('America/Argentina/Buenos_Aires').format() }
 }, { _id: false });
 
+/*const notificationSchema = new mongoose.Schema({
+    notification: { type: String, trim: true },
+    fecha : { type:String,trim:true }
+}, { _id: false });*/
+
 const ArchiveSchema = new mongoose.Schema({
     service              : { type: String, trim: true },
     name                 : { type: String, trim: true },
@@ -16,6 +21,8 @@ const ArchiveSchema = new mongoose.Schema({
     numberInventory      : { type: String, trim: true },
     start                : { type: String, trim: true },
     end                  : { type: String, trim: true },
+    task                 : { type: String, trim: true },
+    fechaTask            : { type: String, trim: true },
     observations         : { type: [observationSchema] },
     materials            : { type: String, trim: true },
     departureDestination : { type: String, trim: true },
