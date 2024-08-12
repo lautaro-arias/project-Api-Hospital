@@ -1,11 +1,12 @@
-import { Request, Response } from "express";
-import { ArchiveModel } from "../models/archiveModel";
-import moment from "moment";
+import { Request, Response, json } from "express";
+import { ArchiveModel } from '../models/archiveModel';
+import moment from 'moment';
 
 export async function listArchive(req: Request, res: Response) {
     try {
         const data = await ArchiveModel.find();
         res.status(200).json(data);
+        
     } catch (error) {
         res.status(500).json({ msg: "Error en el servidor / solicitud Get",error });
     }
@@ -119,6 +120,3 @@ export const deleteArchive = async (req: Request, res: Response) => {
         res.status(500).json({ msg: "Error en el servidor / solicitud Delete",error });
     }
 };
-
-
-
